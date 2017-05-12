@@ -1,0 +1,65 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="coffee">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Coffee</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pot_timer.css">
+
+    <!-- SCRIPTS -->
+    <script src="jquery.min.js"></script><!-- load jquery -->
+    <script src="angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+    <script src="pot_timer.js"></script>
+    
+</head>
+
+<body ng-controller="mainController">
+    <div id="bg" />
+    <div class="container">
+    
+        <div ng-repeat="pot in pots" >
+            <div class="col-md-3 pot-container" id="pot_{{ pot.pot_id }}" pot-repeat-directive>
+                <a class="close-button" href="#" ng-click="remove_pot(pot.pot_id, $event)"></a>
+                <center>
+                    <div id="name_{{ pot.pot_id }}">
+                        {{ show_name(pot.name, 'Pot #' + pot.pot_id) }}
+                    </div>
+                    
+                    <span class="pot_timer"
+                          id="timer_{{ pot.pot_id }}"
+                          start_time="{{ pot.brew_time_parsed }}" 
+                          pot_id="{{ pot.pot_id }}"></span>
+                    <br/>      
+                    <a pot_id="{{ pot.pot_id }}" id="brew-{{ pot.pot_id }}" class="coffee_button" ng-click="made_coffee(pot.pot_id, $event)">Brew</a>
+                </center>
+            </div>
+        </div>
+        
+        <div class="col-md-3 new-pot-container" id="new_pot" ng-click="new_pot()">
+                <center>
+                    <div class="new-pot-text">
+                        <br/>
+                        Add a New Pot
+                        <br/><br/>
+                        +
+                    </div>
+                    
+                    
+
+                </center>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

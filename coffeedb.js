@@ -21,13 +21,13 @@ exports.IsCoffee = function(pot_id, mycallback) {
     if (!pot_id) {
         return new Error("pot_id required");
     } else {
-        db.all("SELECT pot_id, brew_time FROM CoffeeInstances WHERE pot_id = (?)", pod_it, callback = mycallback);
+        db.all("SELECT pot_id, brew_time FROM CoffeeInstances", pot_id, callback = mycallback);
     }
 
 };
 
 exports.MadeCoffee = function(mycallback) {
-    db.all("SELECT pot_id, brew_time FROM CoffeeInstances", callback = mycallback)
+    db.all("SELECT pot_id, brew_time FROM CoffeeInstances", callback = mycallback);
 }
 
 

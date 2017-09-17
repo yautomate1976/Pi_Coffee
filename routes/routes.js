@@ -18,14 +18,16 @@ var appRouter = function(app) {
         if (!req.body.pot_id) {
             res.send({ 'status': 'error', 'message': 'missing pot_id' });
         } else {
-            res.send(true);
+            cdb.IsCoffee(function(err, results) {
+                res.send(results);
+            });
         }
     });
 
     app.get("/made_coffee", function(req, res) {
         cdb.MadeCoffee(function(err, results) {
             res.send(results);
-        })
+        });
     });
 
     app.get("/history", function(req, res) {
